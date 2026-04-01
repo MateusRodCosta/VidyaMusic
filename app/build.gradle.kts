@@ -15,12 +15,13 @@ android {
         }
     }
 
+    val baseVersionCode = 21
     defaultConfig {
-        applicationId = "com.mateusrodcosta.apps.vidyamusic.next"
+        applicationId = "com.mateusrodcosta.apps.vidyamusic"
         minSdk = 28
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.0.1-Rewrite"
+        versionCode = baseVersionCode * 100
+        versionName = "3.0.0-R"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

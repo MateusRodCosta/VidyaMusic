@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Vidya Music (Next)</string>
+    <string name="app_name" translatable="false">Vidya Music</string>
     <string name="app_name_short" translatable="false">Vidya Music</string>
     <string name="app_description">A player for the Vidya Intarweb Playlist (aka VIP Aersia)</string>
     <string name="app_license">Licensed under AGPLv3+, developed by MateusRodCosta</string>
