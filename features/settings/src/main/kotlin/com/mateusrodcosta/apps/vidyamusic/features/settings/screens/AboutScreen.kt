@@ -94,7 +94,7 @@ fun AboutScreenHeader(modifier: Modifier = Modifier) {
                     painterResource(id = RShared.drawable.ic_launcher_monochrome),
                     contentDescription = stringResource(RShared.string.description_logo_vidya_music),
                     tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(8.dp)
                 )
             }
 
