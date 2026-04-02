@@ -59,7 +59,7 @@ fun TrackItem(
             containerColor = if (isPlaying) MaterialTheme.colorScheme.primaryContainer else Color.Transparent,
             headlineColor = if (isPlaying) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
             supportingColor = if (isPlaying) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
-            overlineColor = if (isPlaying) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
+            overlineColor = if (isPlaying) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.primary,
         ),
     )
 }
