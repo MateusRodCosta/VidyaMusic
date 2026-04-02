@@ -22,13 +22,21 @@ android {
         }
     }
 
+    // Main portion of the version code, usually implies a versionName change
     val baseVersionCode = 21
+    // Minor portion code of the version code, usually reserved for emergencies
+    // Should only use values from 0 up to 9
+    val minorVersionCode = 0
+
+    val versionCodeVar = baseVersionCode * 100 + minorVersionCode * 10
+    val versionNameVar = "3.0.0-R"
+
     defaultConfig {
         applicationId = "com.mateusrodcosta.apps.vidyamusic"
         minSdk = 28
         targetSdk = 36
-        versionCode = baseVersionCode * 100
-        versionName = "3.0.0-R"
+        versionCode = versionCodeVar
+        versionName = versionNameVar
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
