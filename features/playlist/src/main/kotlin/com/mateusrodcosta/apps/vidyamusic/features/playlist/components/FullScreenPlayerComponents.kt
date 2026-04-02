@@ -78,7 +78,7 @@ fun FullScreenPlayerHeader(
             Text(
                 text = stringResource(RPlaylist.string.playlist_fullscreen_player_playing_from).uppercase(),
                 style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = MaterialTheme.colorScheme.primary,
                 letterSpacing = 1.5.sp
             )
             Text(
@@ -281,7 +281,7 @@ fun FullScreenPlayerControls(
                 imageVector = Icons.Default.SkipPrevious,
                 contentDescription = stringResource(RPlaylist.string.description_icon_skip_previous),
                 modifier = Modifier.size(36.dp),
-                tint = MaterialTheme.colorScheme.onSurface
+                tint = MaterialTheme.colorScheme.primary
             )
         }
 
@@ -313,7 +313,7 @@ fun FullScreenPlayerControls(
                 imageVector = Icons.Default.SkipNext,
                 contentDescription = stringResource(RPlaylist.string.description_icon_skip_next),
                 modifier = Modifier.size(36.dp),
-                tint = MaterialTheme.colorScheme.onSurface
+                tint = MaterialTheme.colorScheme.primary
             )
         }
     }
