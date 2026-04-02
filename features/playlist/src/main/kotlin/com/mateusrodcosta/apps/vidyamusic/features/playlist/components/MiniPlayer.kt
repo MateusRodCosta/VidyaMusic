@@ -63,6 +63,7 @@ fun MiniPlayer(
                 Text(
                     modifier = Modifier.basicMarquee(),
                     text = track.title,
+                    color = MaterialTheme.colorScheme.primary,
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1
@@ -81,13 +82,15 @@ fun MiniPlayer(
                     contentDescription = if (isPlaying)
                         stringResource(RPlaylist.string.description_icon_pause)
                     else
-                        stringResource(RPlaylist.string.description_icon_play)
+                        stringResource(RPlaylist.string.description_icon_play),
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
             IconButton(onClick = onNextClick) {
                 Icon(
                     imageVector = Icons.Default.SkipNext,
-                    contentDescription = stringResource(RPlaylist.string.description_icon_skip_next)
+                    contentDescription = stringResource(RPlaylist.string.description_icon_skip_next),
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }
