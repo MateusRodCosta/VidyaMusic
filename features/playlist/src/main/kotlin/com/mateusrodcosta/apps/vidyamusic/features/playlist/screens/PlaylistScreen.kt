@@ -75,6 +75,8 @@ fun PlaylistScreen(
     viewModel: PlaylistViewModel,
     onSettingsClick: () -> Unit
 ) {
+    val coroutineScope = rememberCoroutineScope()
+
     val state by viewModel.uiState.collectAsState()
     var showPlaylistSelector by remember { mutableStateOf(false) }
 
@@ -95,7 +97,66 @@ fun PlaylistScreen(
     val listState = rememberLazyListState()
     val tracks = state.selectedPlaylist?.tracks ?: emptyList()
 
-    val coroutineScope = rememberCoroutineScope()
+    val indicatorLabels = remember(tracks) {
+        if (tracks.isEmpty()) return@remember emptyList<String>()
+
+        val labels = ArrayList<String>(tracks.size)
+        val seenFirst = mutableSetOf<Char>()
+        val seenSecond = mutableSetOf<String>()
+
+        fun normalize(name: String): String {
+            var clean = name.trim()
+            val lower = clean.lowercase()
+
+            // Improve "The Legend of Zelda" handling plus similar cases
+            if (lower.startsWith("the ")) clean = clean.substring(4)
+            else if (lower.startsWith("an ")) clean = clean.substring(3)
+            else if (lower.startsWith("a ")) clean = clean.substring(2)
+
+            // Remove special characters
+            clean = clean.filter { it.isLetterOrDigit() }
+
+            return clean.ifEmpty { name.trim() }
+        }
+
+        for (i in tracks.indices) {
+            if (i == 0) {
+                labels.add("♪")
+                val normUpper = normalize(tracks[i].game).uppercase()
+                if (normUpper.isNotEmpty()) {
+                    seenFirst.add(normUpper[0])
+                    if (normUpper.length >= 2) seenSecond.add(normUpper.substring(0, 2))
+                }
+                continue
+            }
+
+            val rawGame = tracks[i].game
+            val normUpper = normalize(rawGame).uppercase()
+
+            if (normUpper.isEmpty()) {
+                labels.add("#")
+                continue
+            }
+
+            val c1 = normUpper[0]
+            val prefix2 = if (normUpper.length >= 2) normUpper.substring(0, 2) else normUpper
+
+            val labelText = if (!seenFirst.contains(c1)) {
+                normUpper.substring(0, 1)
+            } else if (normUpper.length >= 2 && !seenSecond.contains(prefix2)) {
+                normUpper.substring(0, 2)
+            } else {
+                normUpper.substring(0, minOf(3, normUpper.length))
+            }
+
+            val formattedLabel = labelText.lowercase().replaceFirstChar { it.uppercase() }
+            labels.add(formattedLabel)
+
+            seenFirst.add(c1)
+            if (normUpper.length >= 2) seenSecond.add(prefix2)
+        }
+        labels
+    }
 
     BottomSheetScaffold(
         sheetContent = {
@@ -220,21 +281,18 @@ fun PlaylistScreen(
                         ),
                         indicatorContent = { index, isThumbSelected ->
                             if (isThumbSelected) {
-                                val letter = if (index == 0) {
-                                    "♪"
-                                } else {
-                                    tracks.getOrNull(index)?.game?.firstOrNull()?.uppercase() ?: "#"
-                                }
+                                val label = indicatorLabels.getOrNull(index) ?: "#"
+
                                 Surface(
                                     shape = CircleShape,
                                     color = MaterialTheme.colorScheme.primary,
                                     modifier = Modifier
                                         .padding(end = 16.dp)
-                                        .size(48.dp)
+                                        .size(56.dp)
                                 ) {
                                     Box(contentAlignment = Alignment.Center) {
                                         Text(
-                                            text = letter,
+                                            text = label,
                                             color = MaterialTheme.colorScheme.onPrimary,
                                             style = MaterialTheme.typography.titleLarge,
                                             fontWeight = FontWeight.Bold
