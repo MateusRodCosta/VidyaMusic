@@ -79,7 +79,7 @@ private fun ThemeOption(
         },
         colors = ListItemDefaults.colors(
             containerColor = Color.Transparent,
-            leadingIconColor = if (isCurrent) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
+            leadingIconColor = if (isCurrent) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.primary,
             headlineColor = if (isCurrent) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
             supportingColor = if (isCurrent) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
         ),
