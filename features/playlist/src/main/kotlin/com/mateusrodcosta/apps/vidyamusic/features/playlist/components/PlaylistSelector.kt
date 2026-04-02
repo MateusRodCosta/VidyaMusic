@@ -51,11 +51,13 @@ fun PlaylistSelector(
                 else appName,
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.weight(1f, fill = false)
             )
             Icon(
                 imageVector = Icons.Default.ArrowDropDown,
-                contentDescription = stringResource(RPlaylist.string.description_icon_switch_playlist)
+                contentDescription = stringResource(RPlaylist.string.description_icon_switch_playlist),
+                tint = MaterialTheme.colorScheme.primary
             )
         }
 
@@ -102,7 +104,7 @@ fun PlaylistSelectorItem(
         },
         colors = ListItemDefaults.colors(
             containerColor = Color.Transparent,
-            leadingIconColor = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
+            leadingIconColor = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.primary,
             headlineColor = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
             supportingColor = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
         ),
@@ -110,7 +112,6 @@ fun PlaylistSelectorItem(
             .fillMaxWidth()
             .padding(horizontal = 12.dp, vertical = 4.dp)
             .clip(RoundedCornerShape(12.dp))
-
             .background(
                 if (isSelected) MaterialTheme.colorScheme.primaryContainer
                 else Color.Transparent
