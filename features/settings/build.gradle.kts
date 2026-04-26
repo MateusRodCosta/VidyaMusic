@@ -35,10 +35,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-
-    sourceSets.named("main") {
-        kotlin.directories += "src/main/kotlin"
-    }
 }
 
 kotlin {
