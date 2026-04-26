@@ -17,6 +17,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 class PreferencesRepositoryImpl(private val context: Context) : PreferencesRepository {
     private val THEME_KEY = stringPreferencesKey("theme_mode")
     private val DYNAMIC_COLOR_KEY = booleanPreferencesKey("dynamic_color")
+    private val PRIMARY_ON_ROSTER_KEY = booleanPreferencesKey("primary_on_roster")
     private val SKIP_INTRO_KEY = booleanPreferencesKey("skip_intro")
 
 
@@ -27,6 +28,10 @@ class PreferencesRepositoryImpl(private val context: Context) : PreferencesRepos
 
     override val useDynamicColor: Flow<Boolean> = context.dataStore.data.map { preferences ->
         preferences[DYNAMIC_COLOR_KEY] ?: true
+    }
+
+    override val usePrimaryOnRoster: Flow<Boolean> = context.dataStore.data.map { preferences ->
+        preferences[PRIMARY_ON_ROSTER_KEY] ?: false
     }
 
     override val skipPlaylistIntro: Flow<Boolean> = context.dataStore.data.map { preferences ->
@@ -42,6 +47,12 @@ class PreferencesRepositoryImpl(private val context: Context) : PreferencesRepos
     override suspend fun setUseDynamicColor(useDynamic: Boolean) {
         context.dataStore.edit { preferences ->
             preferences[DYNAMIC_COLOR_KEY] = useDynamic
+        }
+    }
+
+    override suspend fun setUsePrimaryOnRoster(usePrimary: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[PRIMARY_ON_ROSTER_KEY] = usePrimary
         }
     }
 

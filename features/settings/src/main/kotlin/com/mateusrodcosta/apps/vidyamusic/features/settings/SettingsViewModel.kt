@@ -50,6 +50,19 @@ class SettingsViewModel(
         }
     }
 
+    val usePrimaryOnRoster: StateFlow<Boolean> = preferencesRepository.usePrimaryOnRoster
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = true
+        )
+
+    fun updateUsePrimaryOnRoster(usePrimary: Boolean) {
+        viewModelScope.launch {
+            preferencesRepository.setUsePrimaryOnRoster(usePrimary)
+        }
+    }
+
     val skipPlaylistIntro: StateFlow<Boolean> = preferencesRepository.skipPlaylistIntro
         .stateIn(
             scope = viewModelScope,

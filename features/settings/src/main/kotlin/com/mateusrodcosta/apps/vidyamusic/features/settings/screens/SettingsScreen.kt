@@ -56,6 +56,7 @@ fun SettingsScreen(
 ) {
     val currentTheme by viewModel.currentTheme.collectAsState()
     val useDynamicColor by viewModel.useDynamicColor.collectAsState()
+    val usePrimaryOnRoster by viewModel.usePrimaryOnRoster.collectAsState()
     val skipIntro by viewModel.skipPlaylistIntro.collectAsState()
 
     val scrollState = rememberScrollState()
@@ -142,6 +143,26 @@ fun SettingsScreen(
                         )
                     )
                 }
+                ListItem(
+                    headlineContent = {
+                        Text("Use primary color for roster list")
+                    },
+                    supportingContent = {
+                        Text("Use primary color instead of secondary color for the roster list")
+                    },
+                    trailingContent = {
+                        Switch(
+                            checked = usePrimaryOnRoster,
+                            onCheckedChange = null
+                        )
+                    },
+                    colors = listItemColors,
+                    modifier = Modifier.toggleable(
+                        value = usePrimaryOnRoster,
+                        onValueChange = { viewModel.updateUsePrimaryOnRoster(it) },
+                        role = Role.Switch
+                    )
+                )
 
                 SectionHeader(stringResource(RSettings.string.settings_playback_section_header))
                 ListItem(

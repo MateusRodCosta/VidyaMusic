@@ -31,6 +31,8 @@ class PlaylistViewModel(
     val bufferedPositionMs = audioController.bufferedPositionMs
     val durationMs = audioController.durationMs
 
+    val usePrimaryOnRoster = preferencesRepository.usePrimaryOnRoster
+
     init {
         fetchInitialData()
     }

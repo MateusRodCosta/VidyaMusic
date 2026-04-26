@@ -86,6 +86,8 @@ fun PlaylistScreen(
     val bufferedPositionMs by viewModel.bufferedPositionMs.collectAsState()
     val durationMs by viewModel.durationMs.collectAsState()
 
+    val usePrimaryOnRoster by viewModel.usePrimaryOnRoster.collectAsState(initial = false)
+
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
     val playlistSheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = true
@@ -319,6 +321,7 @@ fun PlaylistScreen(
                                 TrackItem(
                                     track = track,
                                     isPlaying = isThisTrackPlaying,
+                                    usePrimaryOnRoster = usePrimaryOnRoster,
                                     onClick = {
                                         if (currentTrack?.id == track.id) {
                                             viewModel.togglePlayPause()

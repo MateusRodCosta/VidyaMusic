@@ -18,6 +18,7 @@ import com.mateusrodcosta.apps.vidyamusic.features.playlist.R as RPlaylist
 fun TrackItem(
     track: TrackEntity,
     isPlaying: Boolean,
+    usePrimaryOnRoster: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -56,10 +57,20 @@ fun TrackItem(
                 )
             },
         colors = ListItemDefaults.colors(
-            containerColor = if (isPlaying) MaterialTheme.colorScheme.primaryContainer else Color.Transparent,
-            headlineColor = if (isPlaying) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
-            supportingColor = if (isPlaying) MaterialTheme.colorScheme.onPrimaryContainer else Color.Unspecified,
-            overlineColor = if (isPlaying) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.primary,
+            containerColor = if (isPlaying) {
+                if (usePrimaryOnRoster) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.secondaryContainer
+            } else Color.Transparent,
+            headlineColor = if (isPlaying) {
+                if (usePrimaryOnRoster) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondaryContainer
+            } else Color.Unspecified,
+            supportingColor = if (isPlaying) {
+                if (usePrimaryOnRoster) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondaryContainer
+            } else Color.Unspecified,
+            overlineColor = if (isPlaying) {
+                if (usePrimaryOnRoster) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondaryContainer
+            } else {
+                if (usePrimaryOnRoster) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+            },
         ),
     )
 }
