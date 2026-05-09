@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
+    alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
 }
