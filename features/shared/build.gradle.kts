@@ -61,7 +61,7 @@ dependencies {
     api(libs.lazycolumnscrollbar)
 
     api(platform(libs.koin.bom))
-    api(libs.koin.androidx.compose)
+    api(libs.koin.compose)
 
     api(project(":core"))
     api(project(":domain"))
