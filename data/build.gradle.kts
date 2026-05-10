@@ -46,18 +46,24 @@ kotlin {
 }
 
 dependencies {
+    api(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.serialization.core)
+    implementation(libs.kotlinx.serialization.json)
+
     implementation(libs.androidx.core)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.datastore.core)
+    implementation(libs.androidx.datastore.preferences.core)
     implementation(libs.androidx.datastore.preferences)
-
-    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.utils)
 
+    api(libs.androidx.media3.common)
     implementation(libs.androidx.media3.exoplayer)
-    implementation(libs.androidx.media3.session)
+    api(libs.androidx.media3.session)
 
-    implementation(project(":core"))
-    implementation(project(":domain"))
+    api(project(":core"))
+    api(project(":domain"))
 }

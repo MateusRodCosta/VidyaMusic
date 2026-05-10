@@ -46,24 +46,19 @@ kotlin {
 }
 
 dependencies {
-    api(libs.androidx.core.ktx)
-    api(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.kotlinx.coroutines.core)
 
-    api(libs.androidx.activity.compose)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.activity.compose)
+
     api(platform(libs.androidx.compose.bom))
+    api(libs.androidx.compose.foundation)
     api(libs.androidx.compose.ui)
-    api(libs.androidx.compose.ui.graphics)
-    api(libs.androidx.compose.ui.tooling.preview)
-    api(libs.androidx.compose.material3)
-
+    api(libs.androidx.compose.material.icons.core)
     api(libs.androidx.compose.material.icons.extended)
+    api(libs.androidx.compose.material3)
     api(libs.androidx.compose.material3.window.size.classlib)
 
-    api(libs.lazycolumnscrollbar)
-
-    api(platform(libs.koin.bom))
-    api(libs.koin.compose)
-
     api(project(":core"))
-    api(project(":domain"))
 }
