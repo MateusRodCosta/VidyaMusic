@@ -10,7 +10,9 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.koin.core.annotation.Single
 
+@Single
 class PlaylistRepositoryImpl(private val client: HttpClient) : PlaylistRepository {
     override suspend fun fetchPlaylist(playlistConfig: PlaylistConfigEntity): Result<PlaylistEntity> {
         return withContext(Dispatchers.IO) {

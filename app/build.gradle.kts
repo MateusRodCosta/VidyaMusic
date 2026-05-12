@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.koin.compiler)
     alias(libs.plugins.aboutLibraries.android)
 }
 
@@ -127,6 +128,7 @@ dependencies {
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.core.viewmodel)
+    implementation(libs.koin.annotations)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.viewmodel)

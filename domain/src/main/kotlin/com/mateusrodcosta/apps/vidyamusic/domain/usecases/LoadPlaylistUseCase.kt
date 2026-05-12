@@ -3,7 +3,9 @@ package com.mateusrodcosta.apps.vidyamusic.domain.usecases
 import com.mateusrodcosta.apps.vidyamusic.domain.entity.PlaylistEntity
 import com.mateusrodcosta.apps.vidyamusic.domain.repository.ConfigRepository
 import com.mateusrodcosta.apps.vidyamusic.domain.repository.PlaylistRepository
+import org.koin.core.annotation.Factory
 
+@Factory
 class LoadPlaylistUseCase(
     private val configRepository: ConfigRepository,
     private val playlistRepository: PlaylistRepository,

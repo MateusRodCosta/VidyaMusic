@@ -1,13 +1,17 @@
 package com.mateusrodcosta.apps.vidyamusic.data.player
 
+import android.content.Context
 import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import com.mateusrodcosta.apps.vidyamusic.domain.entity.TrackEntity
+import org.koin.core.annotation.Single
 
-class TrackMapper(
-    private val packageName: String
-) {
+@Single
+class TrackMapper(private val context: Context) {
+
+    private val packageName: String = context.packageName
+
     fun mapToMediaItem(track: TrackEntity): MediaItem {
         val artworkUri = "android.resource://$packageName/drawable/cover_art".toUri()
 

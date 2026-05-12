@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.koin.compiler)
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -50,6 +51,10 @@ dependencies {
     api(libs.kotlinx.serialization.core)
     implementation(libs.kotlinx.serialization.json)
 
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.annotations)
+
     implementation(libs.androidx.core)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.datastore.core)
@@ -58,6 +63,10 @@ dependencies {
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.http)
+    implementation(libs.ktor.serialization)
+    implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.utils)
 
     api(libs.androidx.media3.common)

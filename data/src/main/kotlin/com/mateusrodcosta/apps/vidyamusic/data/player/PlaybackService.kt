@@ -11,7 +11,9 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
+import org.koin.core.annotation.Single
 
+@Single
 class PlaybackService : MediaSessionService() {
     private var mediaSession: MediaSession? = null
 

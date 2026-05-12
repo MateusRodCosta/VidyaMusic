@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.koin.compiler)
 }
 
 android {
@@ -51,6 +52,10 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.viewmodel)
 
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.annotations)
+
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.material.icons.core)
@@ -64,6 +69,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    api(project(":core"))
     api(project(":domain"))
+    api(project(":data"))
     implementation(project(":features:shared"))
 }

@@ -8,11 +8,14 @@ import com.mateusrodcosta.apps.vidyamusic.domain.repository.ConfigRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import org.koin.core.annotation.Property
+import org.koin.core.annotation.Single
 
+@Single
 class ConfigRepositoryImpl(
     private val fileReader: AssetFileReader,
     private val jsonParser: Json,
-    private val configFileName: String = "config.json",
+    @Property("config.filename") private val configFileName: String,
 ) : ConfigRepository {
     private var currentConfig: ConfigFileEntity? = null
 

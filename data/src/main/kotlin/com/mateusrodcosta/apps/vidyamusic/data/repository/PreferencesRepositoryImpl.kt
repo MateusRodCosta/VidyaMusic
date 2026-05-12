@@ -11,9 +11,11 @@ import com.mateusrodcosta.apps.vidyamusic.core.enums.ThemeMode
 import com.mateusrodcosta.apps.vidyamusic.domain.repository.PreferencesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import org.koin.core.annotation.Single
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
+@Single
 class PreferencesRepositoryImpl(private val context: Context) : PreferencesRepository {
     private val THEME_KEY = stringPreferencesKey("theme_mode")
     private val DYNAMIC_COLOR_KEY = booleanPreferencesKey("dynamic_color")
