@@ -47,33 +47,7 @@ class PlaylistViewModel(
                 _uiState.update { it.copy(availablePlaylists = playlists) }
             }
 
-            loadPlaylistUseCase(playlistId = null).onSuccess { playlist ->
-                _uiState.update { it.copy(selectedPlaylist = playlist, isLoading = false) }
-
-                if (playlist.tracks.isNotEmpty()) {
-                    val skipIntro = preferencesRepository.skipPlaylistIntro.first()
-
-                    val tracksToPlay = if (skipIntro && playlist.tracks.size > 1)
-                        playlist.tracks.drop(1)
-                    else
-                        playlist.tracks
-
-                    val startIndex = if (tracksToPlay.isNotEmpty()) {
-                        tracksToPlay.indices.random()
-                    } else {
-                        0
-                    }
-
-                    audioController.startPlaylist(tracksToPlay, startIndex)
-                }
-            }.onFailure { error ->
-                _uiState.update {
-                    it.copy(
-                        error = error.message ?: "Unknown connection error",
-                        isLoading = false
-                    )
-                }
-            }
+            loadPlaylist(playlistId = null)
         }
     }
 
@@ -81,32 +55,36 @@ class PlaylistViewModel(
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, error = null) }
 
-            loadPlaylistUseCase(playlistId).onSuccess { playlist ->
-                _uiState.update { it.copy(selectedPlaylist = playlist, isLoading = false) }
+            loadPlaylist(playlistId)
+        }
+    }
 
-                if (playlist.tracks.isNotEmpty()) {
-                    val skipIntro = preferencesRepository.skipPlaylistIntro.first()
+    private suspend fun loadPlaylist(playlistId: String?) {
+        loadPlaylistUseCase(playlistId).onSuccess { playlist ->
+            _uiState.update { it.copy(selectedPlaylist = playlist, isLoading = false) }
 
-                    val tracksToPlay = if (skipIntro && playlist.tracks.size > 1)
-                        playlist.tracks.drop(1)
-                    else
-                        playlist.tracks
+            if (playlist.tracks.isNotEmpty()) {
+                val skipIntro = preferencesRepository.skipPlaylistIntro.first()
 
-                    val startIndex = if (tracksToPlay.isNotEmpty()) {
-                        tracksToPlay.indices.random()
-                    } else {
-                        0
-                    }
+                val tracksToPlay = if (skipIntro && playlist.tracks.size > 1)
+                    playlist.tracks.drop(1)
+                else
+                    playlist.tracks
 
-                    audioController.startPlaylist(tracksToPlay, startIndex)
+                val startIndex = if (tracksToPlay.isNotEmpty()) {
+                    tracksToPlay.indices.random()
+                } else {
+                    0
                 }
-            }.onFailure { error ->
-                _uiState.update {
-                    it.copy(
-                        error = error.message ?: "Unknown connection error",
-                        isLoading = false
-                    )
-                }
+
+                audioController.startPlaylist(tracksToPlay, startIndex)
+            }
+        }.onFailure { error ->
+            _uiState.update {
+                it.copy(
+                    error = error.message ?: "Unknown connection error",
+                    isLoading = false
+                )
             }
         }
     }
