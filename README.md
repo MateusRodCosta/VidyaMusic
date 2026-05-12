@@ -27,3 +27,10 @@ GenAI is used to, among other reasons:
 * Help managing the interfacing between Media3 (the playback backend) and the app 
 * Help debugging random issues that may come up from Android or Compose
 (at least from the point of view of a Flutter Developer)
+
+## Screenshots
+
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" width="540" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" width="540" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" width="540" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" width="540" />
