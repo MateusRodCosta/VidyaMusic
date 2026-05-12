@@ -16,7 +16,6 @@ class VidyaMusicApp : Application() {
         startKoin<VidyaMusicApp> {
             androidLogger()
             androidContext(this@VidyaMusicApp)
-            properties(mapOf("config.filename" to "config.json"))
         }
     }
 }
