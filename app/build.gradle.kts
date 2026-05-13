@@ -29,9 +29,12 @@ android {
     // Minor portion code of the version code, usually reserved for emergencies
     // Should only use values from 0 up to 9
     val minorVersionCode = 0
-
+    // XXYZ, where XX is the baseVersionCode, Y is the minorVersionCode,
+    // and Z is reserved for ABIs (which is unused, so it's always zero)
     val versionCodeVar = baseVersionCode * 100 + minorVersionCode * 10
-    val versionNameVar = "3.0.0-R"
+
+    val baseversionName = "3.0.0"
+    val versionNameVar = "$baseversionName-R"
 
     defaultConfig {
         applicationId = "com.mateusrodcosta.apps.vidyamusic"
