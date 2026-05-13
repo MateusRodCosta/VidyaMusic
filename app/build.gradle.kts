@@ -39,6 +39,7 @@ android {
     defaultConfig {
         applicationId = "com.mateusrodcosta.apps.vidyamusic"
         minSdk = 28
+        //noinspection OldTargetApi
         targetSdk = 36
         versionCode = versionCodeVar
         versionName = versionNameVar
