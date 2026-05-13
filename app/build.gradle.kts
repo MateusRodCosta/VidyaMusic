@@ -101,6 +101,12 @@ android {
         @Suppress("UnstableApiUsage")
         generateLocaleConfig = true
     }
+    dependenciesInfo {
+        // Disables dependency metadata when building APKs.
+        // For https://gitlab.com/fdroid/fdroidserver/-/work_items/1056
+        // Dependency Metadata Block is kept for Google Play Console's AABs
+        includeInApk = false
+    }
 
     sourceSets.named("main") {
         kotlin.directories += "src/main/kotlin"
