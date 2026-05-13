@@ -58,7 +58,7 @@ dependencies {
     api(libs.androidx.compose.material.icons.core)
     api(libs.androidx.compose.material.icons.extended)
     api(libs.androidx.compose.material3)
-    api(libs.androidx.compose.material3.window.size.classlib)
+    api(libs.androidx.compose.material3.adaptive.layout)
 
     api(project(":core"))
 }

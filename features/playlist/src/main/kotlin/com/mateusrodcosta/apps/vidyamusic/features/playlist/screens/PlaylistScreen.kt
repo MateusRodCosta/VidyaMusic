@@ -38,6 +38,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -55,6 +56,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowSizeClass
 import com.mateusrodcosta.apps.vidyamusic.domain.player.PlayerState
 import com.mateusrodcosta.apps.vidyamusic.features.playlist.PlaylistViewModel
 import com.mateusrodcosta.apps.vidyamusic.features.playlist.components.FullScreenError
@@ -63,6 +65,7 @@ import com.mateusrodcosta.apps.vidyamusic.features.playlist.components.MiniPlaye
 import com.mateusrodcosta.apps.vidyamusic.features.playlist.components.PlaylistSelector
 import com.mateusrodcosta.apps.vidyamusic.features.playlist.components.PlaylistSelectorItem
 import com.mateusrodcosta.apps.vidyamusic.features.playlist.components.TrackItem
+import com.mateusrodcosta.apps.vidyamusic.features.shared.components.utils.shouldShowLandscape
 import kotlinx.coroutines.launch
 import my.nanihadesuka.compose.LazyColumnScrollbar
 import my.nanihadesuka.compose.ScrollbarSettings
@@ -73,8 +76,11 @@ import com.mateusrodcosta.apps.vidyamusic.features.shared.R as RShared
 @Composable
 fun PlaylistScreen(
     viewModel: PlaylistViewModel,
-    onSettingsClick: () -> Unit
+    onSettingsClick: () -> Unit,
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo(supportLargeAndXLargeWidth = true).windowSizeClass
 ) {
+    val useLandscapeLayout = shouldShowLandscape(windowSizeClass)
+
     val coroutineScope = rememberCoroutineScope()
 
     val state by viewModel.uiState.collectAsState()
@@ -192,7 +198,8 @@ fun PlaylistScreen(
                                     coroutineScope.launch {
                                         bottomSheetScaffoldState.bottomSheetState.partialExpand()
                                     }
-                                }
+                                },
+                                useLandscapeLayout = useLandscapeLayout
                             )
                         }
                     } else {
