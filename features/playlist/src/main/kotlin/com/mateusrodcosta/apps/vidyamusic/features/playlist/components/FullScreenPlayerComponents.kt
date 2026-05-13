@@ -91,7 +91,7 @@ fun FullScreenPlayerHeader(
             )
         }
 
-        Spacer(modifier = Modifier.size(48.dp))
+        Spacer(modifier = Modifier.size(32.dp))
     }
 }
 
@@ -142,9 +142,6 @@ fun FullScreenPlayerTrackInfo(
             modifier = Modifier.basicMarquee()
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
-
-
         if (track.comp.isNotEmpty()) {
             val creditText = buildString {
                 append(
@@ -163,6 +160,8 @@ fun FullScreenPlayerTrackInfo(
                     )
                 }
             }
+
+            Spacer(modifier = Modifier.height(4.dp))
 
             Text(
                 text = creditText,
@@ -266,7 +265,8 @@ fun FullScreenPlayerControls(
     onPlayPauseClick: () -> Unit,
     onPreviousClick: () -> Unit,
     onNextClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    useLandscapeLayout: Boolean = false
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -275,19 +275,19 @@ fun FullScreenPlayerControls(
     ) {
         IconButton(
             onClick = onPreviousClick,
-            modifier = Modifier.size(56.dp)
+            modifier = Modifier.size(if(useLandscapeLayout) 48.dp else 64.dp)
         ) {
             Icon(
                 imageVector = Icons.Default.SkipPrevious,
                 contentDescription = stringResource(RPlaylist.string.description_icon_skip_previous),
-                modifier = Modifier.size(36.dp),
+                modifier = Modifier.size(if(useLandscapeLayout) 24.dp else 32.dp),
                 tint = MaterialTheme.colorScheme.primary
             )
         }
 
         FilledIconButton(
             onClick = onPlayPauseClick,
-            modifier = Modifier.size(80.dp),
+            modifier = Modifier.size(if(useLandscapeLayout) 64.dp else 80.dp),
             shape = CircleShape,
             colors = IconButtonDefaults.filledIconButtonColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -301,18 +301,18 @@ fun FullScreenPlayerControls(
                         stringResource(RPlaylist.string.description_icon_pause)
                     else
                         stringResource(RPlaylist.string.description_icon_play),
-                modifier = Modifier.size(48.dp)
+                modifier = Modifier.size(if(useLandscapeLayout) 32.dp else 40.dp)
             )
         }
 
         IconButton(
             onClick = onNextClick,
-            modifier = Modifier.size(56.dp)
+            modifier = Modifier.size(if(useLandscapeLayout) 48.dp else 64.dp)
         ) {
             Icon(
                 imageVector = Icons.Default.SkipNext,
                 contentDescription = stringResource(RPlaylist.string.description_icon_skip_next),
-                modifier = Modifier.size(36.dp),
+                modifier = Modifier.size(if(useLandscapeLayout) 24.dp else 32.dp),
                 tint = MaterialTheme.colorScheme.primary
             )
         }

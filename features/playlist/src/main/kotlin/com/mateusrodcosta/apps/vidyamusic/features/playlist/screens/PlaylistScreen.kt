@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -80,6 +81,8 @@ fun PlaylistScreen(
     windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo(supportLargeAndXLargeWidth = true).windowSizeClass
 ) {
     val useLandscapeLayout = shouldShowLandscape(windowSizeClass)
+    val statusBarsPaddings = WindowInsets.statusBars.asPaddingValues()
+    val navigationBarPaddings = WindowInsets.navigationBars.asPaddingValues()
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -99,7 +102,7 @@ fun PlaylistScreen(
         skipPartiallyExpanded = true
     )
 
-    val navBarBottomPadding = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+    val navBarBottomPadding = navigationBarPaddings.calculateBottomPadding()
     val peekHeight = if (currentTrack != null) 80.dp + navBarBottomPadding else 0.dp
 
     val listState = rememberLazyListState()
@@ -199,6 +202,8 @@ fun PlaylistScreen(
                                         bottomSheetScaffoldState.bottomSheetState.partialExpand()
                                     }
                                 },
+                                statusBarPaddings = statusBarsPaddings,
+                                navigationBarPaddings = navigationBarPaddings,
                                 useLandscapeLayout = useLandscapeLayout
                             )
                         }

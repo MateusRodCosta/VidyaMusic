@@ -2,12 +2,14 @@ package com.mateusrodcosta.apps.vidyamusic.features.playlist.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +30,8 @@ fun FullScreenPlayer(
     onNextClick: () -> Unit,
     onPreviousClick: () -> Unit,
     onCollapseClick: () -> Unit,
+    statusBarPaddings: PaddingValues,
+    navigationBarPaddings: PaddingValues,
     modifier: Modifier = Modifier,
     useLandscapeLayout: Boolean = false,
 ) {
@@ -36,7 +40,10 @@ fun FullScreenPlayer(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(vertical = 16.dp),
+            .padding(
+                top = statusBarPaddings.calculateTopPadding(),
+                bottom = navigationBarPaddings.calculateBottomPadding()
+            ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         FullScreenPlayerHeader(
@@ -45,7 +52,7 @@ fun FullScreenPlayer(
             modifier = Modifier.padding(horizontal = 16.dp)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(if (useLandscapeLayout) 8.dp else 16.dp))
 
         if (useLandscapeLayout) {
             Row(
@@ -59,18 +66,20 @@ fun FullScreenPlayer(
             ) {
                 FullScreenPlayerCoverArt(modifier = Modifier.weight(1f))
 
+                Spacer(modifier = Modifier.width(16.dp))
+
                 Column(
                     modifier = Modifier
                         .weight(2f)
-                        .fillMaxHeight()
-                        .padding(start = 32.dp),
+                        .fillMaxHeight(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    Spacer(modifier = Modifier.weight(1f))
 
                     FullScreenPlayerTrackInfo(track)
 
-                    Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.weight(1f))
 
                     FullScreenPlayerSeekBar(
                         currentPositionMs = currentPositionMs,
@@ -79,7 +88,7 @@ fun FullScreenPlayer(
                         onSeek = onSeek
                     )
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
 
                     FullScreenPlayerControls(
                         isPlaying = isPlaying,
@@ -87,19 +96,18 @@ fun FullScreenPlayer(
                         onPreviousClick = onPreviousClick,
                         onNextClick = onNextClick
                     )
-
                 }
             }
         } else {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 24.dp),
+                    .padding(horizontal = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 FullScreenPlayerCoverArt()
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.weight(1f))
 
                 FullScreenPlayerTrackInfo(track)
 
@@ -112,7 +120,7 @@ fun FullScreenPlayer(
                     onSeek = onSeek
                 )
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
                 FullScreenPlayerControls(
                     isPlaying = isPlaying,
@@ -120,8 +128,6 @@ fun FullScreenPlayer(
                     onPreviousClick = onPreviousClick,
                     onNextClick = onNextClick
                 )
-
-                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }
