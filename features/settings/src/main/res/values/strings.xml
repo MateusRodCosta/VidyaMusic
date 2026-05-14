@@ -6,6 +6,8 @@
     <string name="settings_appearance_theme_selector_title">Theme</string>
     <string name="settings_appearance_dynamic_colors_title">Dynamic Colors</string>
     <string name="settings_appearance_dynamic_colors_subtitle">Use system wallpaper colors (Material You)</string>
+    <string name="settings_appearance_use_primary_on_roster_title">Use primary color for roster list</string>
+    <string name="settings_appearance_use_primary_on_roster_subtitle">Use primary color instead of secondary color for the roster list</string>
 
     <string name="settings_playback_section_header">Playback</string>
     <string name="settings_playback_skip_intro_title">Skip Playlist Introductions</string>

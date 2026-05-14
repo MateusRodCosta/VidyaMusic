@@ -145,10 +145,10 @@ fun SettingsScreen(
                 }
                 ListItem(
                     headlineContent = {
-                        Text("Use primary color for roster list")
+                        Text(stringResource(RSettings.string.settings_appearance_use_primary_on_roster_title))
                     },
                     supportingContent = {
-                        Text("Use primary color instead of secondary color for the roster list")
+                        Text(stringResource(RSettings.string.settings_appearance_use_primary_on_roster_subtitle))
                     },
                     trailingContent = {
                         Switch(

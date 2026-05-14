@@ -6,6 +6,8 @@
     <string name="settings_appearance_theme_selector_title">Tema</string>
     <string name="settings_appearance_dynamic_colors_title">Cores Dinâmicas</string>
     <string name="settings_appearance_dynamic_colors_subtitle">Usar cores do papel de parede (Material You)</string>
+    <string name="settings_appearance_use_primary_on_roster_title">Usar cor primária para a lista de faixas</string>
+    <string name="settings_appearance_use_primary_on_roster_subtitle">Usar cor primária ao invés de cor secundária para a lista de faixas</string>
 
     <string name="settings_playback_section_header">Reproduçao</string>
     <string name="settings_playback_skip_intro_title">Pular introduções das listas de reprodução</string>
