@@ -10,11 +10,9 @@ import org.koin.core.annotation.Single
 @Single
 class TrackMapper(private val context: Context) {
 
-    private val packageName: String = context.packageName
+    private val artworkUri = "android.resource://${context.packageName}/drawable/cover_art".toUri()
 
     fun mapToMediaItem(track: TrackEntity): MediaItem {
-        val artworkUri = "android.resource://$packageName/drawable/cover_art".toUri()
-
         return MediaItem.Builder()
             .setMediaId(track.id.toString())
             .setUri(track.url)
