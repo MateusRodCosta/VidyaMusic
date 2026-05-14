@@ -1,0 +1,6 @@
+Nesta nova versão:
+• Melhorias e atualizações das ferramentas de build
+• Atualização de dependências
+• Grandes melhorias por baixo dos panos
+• Nova função secundária de "Usar cor primária na lista de faixas"
+• Correções para a capa de álbum da notificação

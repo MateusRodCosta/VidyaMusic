@@ -1,0 +1,6 @@
+On this new release:
+• Build improvements and updates
+• Dependencies updates
+• Huge under-the-hood improvements
+• Minor new "Use Primary Color on Roster" feature
+• Fixes to notification cover art
