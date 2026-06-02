@@ -102,10 +102,14 @@ class MainActivity : ComponentActivity() {
                     val viewModel: PlaylistViewModel = koinViewModel()
                     val snackbarHostState = remember { SnackbarHostState() }
 
-                    NotificationPermissionHandler(snackbarHostState = snackbarHostState)
-
                     val isFromAppInfo =
                         intent.action == android.content.Intent.ACTION_APPLICATION_PREFERENCES
+
+                    LaunchedEffect(Unit) {
+                        viewModel.fetchInitialData(shouldPlay = !isFromAppInfo)
+                    }
+
+                    NotificationPermissionHandler(snackbarHostState = snackbarHostState)
                     var showSettings by rememberSaveable { mutableStateOf(isFromAppInfo) }
 
                     Box(modifier = Modifier.fillMaxSize()) {

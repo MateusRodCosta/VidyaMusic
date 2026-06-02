@@ -35,11 +35,9 @@ class PlaylistViewModel(
 
     val usePrimaryOnRoster = preferencesRepository.usePrimaryOnRoster
 
-    init {
-        fetchInitialData()
-    }
+    fun fetchInitialData(shouldPlay: Boolean = true) {
+        if (_uiState.value.selectedPlaylist != null) return
 
-    private fun fetchInitialData() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, error = null) }
 
@@ -47,7 +45,7 @@ class PlaylistViewModel(
                 _uiState.update { it.copy(availablePlaylists = playlists) }
             }
 
-            loadPlaylist(playlistId = null)
+            loadPlaylist(playlistId = null, shouldPlay = shouldPlay)
         }
     }
 
@@ -55,15 +53,15 @@ class PlaylistViewModel(
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, error = null) }
 
-            loadPlaylist(playlistId)
+            loadPlaylist(playlistId, shouldPlay = true)
         }
     }
 
-    private suspend fun loadPlaylist(playlistId: String?) {
+    private suspend fun loadPlaylist(playlistId: String?, shouldPlay: Boolean) {
         loadPlaylistUseCase(playlistId).onSuccess { playlist ->
             _uiState.update { it.copy(selectedPlaylist = playlist, isLoading = false) }
 
-            if (playlist.tracks.isNotEmpty()) {
+            if (shouldPlay && playlist.tracks.isNotEmpty()) {
                 val skipIntro = preferencesRepository.skipPlaylistIntro.first()
 
                 val tracksToPlay = if (skipIntro && playlist.tracks.size > 1)
@@ -95,6 +93,7 @@ class PlaylistViewModel(
         if (currentPlaylistId != null) {
             selectPlaylist(currentPlaylistId)
         } else {
+            _uiState.update { it.copy(selectedPlaylist = null, error = null) }
             fetchInitialData()
         }
     }
