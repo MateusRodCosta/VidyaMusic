@@ -127,13 +127,13 @@ kotlin {
 dependencies {
     implementation(libs.kotlinx.coroutines.core)
     runtimeOnly(libs.kotlinx.coroutines.android)
-    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.window.core)
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
@@ -142,13 +142,6 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.viewmodel)
-
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.cio)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.http)
-    implementation(libs.ktor.serialization)
-    implementation(libs.ktor.serialization.kotlinx.json)
 
     implementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(platform(libs.androidx.compose.bom))

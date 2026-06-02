@@ -17,11 +17,11 @@ kotlin {
 }
 
 dependencies {
-    implementation(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.coroutines.core)
 
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
-    implementation(libs.koin.annotations)
+    api(platform(libs.koin.bom))
+    api(libs.koin.core)
+    api(libs.koin.annotations)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

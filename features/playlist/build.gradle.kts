@@ -47,23 +47,22 @@ kotlin {
 }
 
 dependencies {
-    implementation(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.coroutines.core)
 
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.lifecycle.viewmodel)
+    api(libs.androidx.lifecycle.viewmodel)
+    api(libs.androidx.window.core)
 
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
-    implementation(libs.koin.core.viewmodel)
-    implementation(libs.koin.annotations)
+    api(platform(libs.koin.bom))
+    api(libs.koin.core)
+    api(libs.koin.core.viewmodel)
+    api(libs.koin.annotations)
 
     implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.compose.ui)
+    api(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.compose.material.icons.extended)
-    implementation(libs.androidx.compose.material3)
+    api(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material3.adaptive)
-    implementation(libs.androidx.compose.material3.adaptive.layout)
 
     implementation(libs.lazycolumnscrollbar)
 

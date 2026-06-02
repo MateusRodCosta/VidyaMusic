@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.core)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)
+    api(libs.androidx.window.core)
 
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.compose.foundation)
@@ -58,7 +59,6 @@ dependencies {
     api(libs.androidx.compose.material.icons.core)
     api(libs.androidx.compose.material.icons.extended)
     api(libs.androidx.compose.material3)
-    api(libs.androidx.compose.material3.adaptive.layout)
 
     api(project(":core"))
 }
