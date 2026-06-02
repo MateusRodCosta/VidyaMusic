@@ -2,7 +2,9 @@ package com.mateusrodcosta.apps.vidyamusic.domain.repository
 
 import com.mateusrodcosta.apps.vidyamusic.core.enums.ThemeMode
 import kotlinx.coroutines.flow.Flow
+import org.koin.core.annotation.Singleton
 
+@Singleton
 interface PreferencesRepository {
     val themeMode: Flow<ThemeMode>
     val useDynamicColor: Flow<Boolean>

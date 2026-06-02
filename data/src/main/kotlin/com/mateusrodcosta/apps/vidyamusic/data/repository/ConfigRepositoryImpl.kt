@@ -9,7 +9,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import org.koin.core.annotation.Property
+import org.koin.core.annotation.PropertyValue
 import org.koin.core.annotation.Single
+
+@PropertyValue("config.filename")
+val DEFAULT_CONFIG_FILENAME = "config.json"
 
 @Single
 class ConfigRepositoryImpl(
@@ -17,6 +21,7 @@ class ConfigRepositoryImpl(
     private val jsonParser: Json,
     @Property("config.filename") private val configFileName: String,
 ) : ConfigRepository {
+
     private var currentConfig: ConfigFileEntity? = null
 
     override suspend fun loadConfig(): Result<ConfigFileEntity> {

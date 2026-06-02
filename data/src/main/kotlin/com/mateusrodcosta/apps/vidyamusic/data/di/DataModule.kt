@@ -9,11 +9,7 @@ import kotlinx.serialization.json.Json
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Configuration
 import org.koin.core.annotation.Module
-import org.koin.core.annotation.PropertyValue
 import org.koin.core.annotation.Single
-
-@PropertyValue("config.filename")
-const val DEFAULT_CONFIG_FILENAME = "config.json"
 
 @Module(includes = [DomainModule::class])
 @ComponentScan("com.mateusrodcosta.apps.vidyamusic.data")

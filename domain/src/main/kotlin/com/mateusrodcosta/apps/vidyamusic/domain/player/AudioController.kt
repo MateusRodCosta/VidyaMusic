@@ -2,7 +2,9 @@ package com.mateusrodcosta.apps.vidyamusic.domain.player
 
 import com.mateusrodcosta.apps.vidyamusic.domain.entity.TrackEntity
 import kotlinx.coroutines.flow.StateFlow
+import org.koin.core.annotation.Singleton
 
+@Singleton
 interface AudioController {
     val playerState: StateFlow<PlayerState>
     val currentTrack: StateFlow<TrackEntity?>
