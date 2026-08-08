@@ -10,7 +10,7 @@ plugins {
 android {
     namespace = "com.mateusrodcosta.apps.vidyamusic.features.shared"
     compileSdk {
-        version = release(36) {
+        version = release(37) {
             minorApiLevel = 1
         }
     }
