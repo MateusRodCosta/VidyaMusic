@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
     alias(libs.plugins.dependency.analysis)
@@ -10,6 +11,7 @@ java {
 }
 kotlin {
     compilerOptions {
+        languageVersion = KotlinVersion.KOTLIN_2_4
         jvmTarget = JvmTarget.JVM_21
     }
 }
