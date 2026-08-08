@@ -1,6 +1,6 @@
 [versions]
 dependencyAnalysis = "3.14.1"
-agp = "9.2.1"
+agp = "9.3.1"
 kotlin = "2.3.21"
 koinPlugin = "1.0.0"
 core = "1.18.0"
