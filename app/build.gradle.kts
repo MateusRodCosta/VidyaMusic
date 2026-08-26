@@ -33,8 +33,8 @@ android {
     // and Z is reserved for ABIs (which is unused, so it's always zero)
     val versionCodeVar = baseVersionCode * 100 + minorVersionCode * 10
 
-    val baseversionName = "3.0.1"
-    val versionNameVar = "$baseversionName-R"
+    val baseVersionName = "3.0.1"
+    val versionNameVar = "$baseVersionName-R"
 
     defaultConfig {
         applicationId = "com.mateusrodcosta.apps.vidyamusic"
@@ -108,10 +108,6 @@ android {
         // Dependency Metadata Block is kept for Google Play Console's AABs
         includeInApk = false
     }
-
-    sourceSets.named("main") {
-        kotlin.directories += "src/main/kotlin"
-    }
 }
 
 kotlin {
@@ -140,8 +136,9 @@ dependencies {
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.viewmodel)
 
-    implementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(platform(libs.androidx.compose.bom))
+    val composeBom = platform(libs.androidx.compose.bom)
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
