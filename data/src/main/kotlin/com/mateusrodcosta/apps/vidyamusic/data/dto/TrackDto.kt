@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TrackDto(
-    val id: Int? = null,
+    val id: Int,
     val game: String,
     val title: String,
     val comp: String,

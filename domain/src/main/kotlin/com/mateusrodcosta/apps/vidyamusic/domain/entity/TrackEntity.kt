@@ -1,7 +1,7 @@
 package com.mateusrodcosta.apps.vidyamusic.domain.entity
 
 data class TrackEntity(
-    val id: Int? = null,
+    val id: Int,
     val game: String,
     val title: String,
     val comp: String,

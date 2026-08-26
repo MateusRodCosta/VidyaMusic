@@ -23,17 +23,14 @@ class PlaylistRepositoryImpl(private val client: HttpClient) : PlaylistRepositor
                 val isSourcePlaylist = playlistConfig.isSource
                 val safeBaseUrl = playlistDto.url.removeSuffix("/")
 
-                val trackEntities = playlistDto.tracks.mapIndexed { index, dto ->
+                val trackEntities = playlistDto.tracks.map { dto ->
                     val shouldUseSource = isSourcePlaylist && dto.sFile != null
 
-                    val baseId = if (shouldUseSource) (dto.sId ?: dto.id) else dto.id
-                    val id = baseId ?: index
-
+                    val id = if (shouldUseSource) (dto.sId ?: dto.id) else dto.id
                     val title = if (shouldUseSource) (dto.sTitle ?: dto.title) else dto.title
                     val file = if (shouldUseSource) dto.sFile else dto.file
 
                     val fileName = "$file.${playlistDto.ext}"
-
                     val finalUrl =
                         if (shouldUseSource && playlistConfig.sourcePath?.isNotEmpty() == true) {
                             val safeSourcePath =
