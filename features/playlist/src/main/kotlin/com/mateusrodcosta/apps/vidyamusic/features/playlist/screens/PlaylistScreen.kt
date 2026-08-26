@@ -39,7 +39,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -78,7 +78,7 @@ import com.mateusrodcosta.apps.vidyamusic.features.shared.R as RShared
 fun PlaylistScreen(
     viewModel: PlaylistViewModel,
     onSettingsClick: () -> Unit,
-    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo(supportLargeAndXLargeWidth = true).windowSizeClass
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
 ) {
     val useLandscapeLayout = shouldShowLandscape(windowSizeClass)
     val statusBarsPaddings = WindowInsets.statusBars.asPaddingValues()
@@ -109,7 +109,7 @@ fun PlaylistScreen(
     val tracks = state.selectedPlaylist?.tracks ?: emptyList()
 
     val indicatorLabels = remember(tracks) {
-        if (tracks.isEmpty()) return@remember emptyList<String>()
+        if (tracks.isEmpty()) return@remember emptyList()
 
         val labels = ArrayList<String>(tracks.size)
         val seenFirst = mutableSetOf<Char>()

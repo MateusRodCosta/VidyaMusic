@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.koin.core.annotation.Single
+import kotlin.time.Duration.Companion.milliseconds
 
 @Single
 class AudioControllerImpl(
@@ -115,7 +116,7 @@ class AudioControllerImpl(
                 _currentPositionMs.value = mediaController?.currentPosition?.coerceAtLeast(0L) ?: 0L
                 _bufferedPositionMs.value =
                     mediaController?.bufferedPosition?.coerceAtLeast(0L) ?: 0L
-                delay(1000L)
+                delay(1000L.milliseconds)
             }
         }
     }
