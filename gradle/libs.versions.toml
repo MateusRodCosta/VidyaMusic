@@ -16,11 +16,11 @@ espressoCore = "3.7.0"
 mockk = "1.14.11"
 koinBom = "4.2.2"
 datastore = "1.2.1"
-composeBom = "2026.06.01"
+composeBom = "2026.08.00"
 ktor = "3.5.2"
 media3 = "1.11.0"
 lazycolumnscrollbar = "2.2.0"
-aboutLibraries = "15.0.4"
+aboutLibraries = "15.1.1"
 
 [libraries]
 androidx-core = { group = "androidx.core", name = "core", version.ref = "core" }
