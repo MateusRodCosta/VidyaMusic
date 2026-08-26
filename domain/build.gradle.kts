@@ -11,6 +11,7 @@ java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
 }
+
 kotlin {
     compilerOptions {
         languageVersion = KotlinVersion.KOTLIN_2_4
