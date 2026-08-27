@@ -53,6 +53,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.LayoutDirection
@@ -303,6 +304,7 @@ fun PlaylistScreen(
                                     modifier = Modifier
                                         .padding(end = 16.dp)
                                         .size(56.dp)
+                                        .testTag("scrollbar_indicator")
                                 ) {
                                     Box(contentAlignment = Alignment.Center) {
                                         Text(
@@ -314,7 +316,8 @@ fun PlaylistScreen(
                                     }
                                 }
                             }
-                        }
+                        },
+                        modifier = Modifier.testTag("scrollbar")
                     ) {
                         LazyColumn(
                             state = listState,
@@ -324,7 +327,9 @@ fun PlaylistScreen(
                                 end = innerPadding.calculateEndPadding(LayoutDirection.Ltr),
                                 bottom = 16.dp
                             ),
-                            modifier = Modifier.fillMaxSize()
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .testTag("roster")
                         ) {
                             itemsIndexed(tracks) { index, track ->
                                 val isThisTrackPlaying =

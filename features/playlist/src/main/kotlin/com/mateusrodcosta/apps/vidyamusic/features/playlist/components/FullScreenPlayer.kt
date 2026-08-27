@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.mateusrodcosta.apps.vidyamusic.domain.entity.TrackEntity
 import com.mateusrodcosta.apps.vidyamusic.domain.player.PlayerState
@@ -43,7 +44,8 @@ fun FullScreenPlayer(
             .padding(
                 top = statusBarPaddings.calculateTopPadding(),
                 bottom = navigationBarPaddings.calculateBottomPadding()
-            ),
+            )
+            .testTag("full_player"),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         FullScreenPlayerHeader(

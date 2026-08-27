@@ -27,6 +27,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "VidyaMusic"
 include(":app")
+include(":app:baselineprofile")
 include(":core")
 include(":domain")
 include(":data")

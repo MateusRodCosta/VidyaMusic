@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -51,13 +52,18 @@ fun MiniPlayer(
     onSeek: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier.fillMaxWidth()) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .testTag("miniplayer"),
+        ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
                 .fillMaxWidth()
                 .height(80.dp)
                 .padding(start = 16.dp, end = 24.dp, top = 8.dp, bottom = 8.dp)
+                .testTag("miniplayer_content")
         ) {
             Column(
                 modifier = Modifier.weight(1f),
@@ -79,7 +85,10 @@ fun MiniPlayer(
                 )
             }
 
-            IconButton(onClick = onPlayPauseClick) {
+            IconButton(
+                onClick = onPlayPauseClick,
+                modifier = Modifier.testTag("miniplayer_playpause")
+            ) {
                 Icon(
                     imageVector = if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
                     contentDescription = if (isPlaying)
@@ -89,7 +98,10 @@ fun MiniPlayer(
                     tint = MaterialTheme.colorScheme.primary
                 )
             }
-            IconButton(onClick = onNextClick) {
+            IconButton(
+                onClick = onNextClick,
+                modifier = Modifier.testTag("miniplayer_next")
+            ) {
                 Icon(
                     imageVector = Icons.Default.SkipNext,
                     contentDescription = stringResource(RPlaylist.string.description_icon_skip_next),

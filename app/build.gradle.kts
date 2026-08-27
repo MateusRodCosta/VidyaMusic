@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.koin.compiler)
     alias(libs.plugins.aboutLibraries.android)
+    alias(libs.plugins.baselineprofile)
 }
 
 val keystorePropertiesFile = rootProject.file("key.properties")
@@ -118,6 +119,9 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.androidx.profileinstaller)
+    "baselineProfile"(project(":app:baselineprofile"))
+
     implementation(libs.kotlinx.coroutines.core)
     runtimeOnly(libs.kotlinx.coroutines.android)
 

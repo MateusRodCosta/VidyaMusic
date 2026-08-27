@@ -21,6 +21,10 @@ ktor = "3.5.2"
 media3 = "1.11.0"
 lazycolumnscrollbar = "2.2.0"
 aboutLibraries = "15.1.1"
+uiautomator = "2.4.0"
+benchmarkMacroJunit4 = "1.4.1"
+baselineprofile = "1.5.0-rc02"
+profileinstaller = "1.4.1"
 
 [libraries]
 androidx-core = { group = "androidx.core", name = "core", version.ref = "core" }
@@ -74,6 +78,9 @@ lazycolumnscrollbar = { group = "com.github.nanihadesuka", name = "LazyColumnScr
 aboutlibraries-core = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "aboutLibraries" }
 aboutlibraries-compose-core = { group = "com.mikepenz", name = "aboutlibraries-compose-core", version.ref = "aboutLibraries" }
 aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
+androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+androidx-benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }
+androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "profileinstaller" }
 
 [plugins]
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
@@ -84,3 +91,5 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 koin-compiler = { id = "io.insert-koin.compiler.plugin", version.ref = "koinPlugin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 aboutLibraries-android = { id = "com.mikepenz.aboutlibraries.plugin.android", version.ref = "aboutLibraries" }
+android-test = { id = "com.android.test", version.ref = "agp" }
+baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }

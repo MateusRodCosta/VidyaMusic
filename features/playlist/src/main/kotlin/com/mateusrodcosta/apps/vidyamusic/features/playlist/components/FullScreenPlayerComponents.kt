@@ -42,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -59,10 +60,15 @@ fun FullScreenPlayerHeader(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .testTag("full_player_header"),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = onCollapseClick) {
+        IconButton(
+            onClick = onCollapseClick,
+            modifier = Modifier.testTag("full_player_collapse")
+        ) {
             Icon(
                 imageVector = Icons.Default.KeyboardArrowDown,
                 contentDescription = stringResource(RPlaylist.string.description_icon_collapse_player),
@@ -269,7 +275,9 @@ fun FullScreenPlayerControls(
     useLandscapeLayout: Boolean = false
 ) {
     Row(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .testTag("full_player_controls"),
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -287,7 +295,9 @@ fun FullScreenPlayerControls(
 
         FilledIconButton(
             onClick = onPlayPauseClick,
-            modifier = Modifier.size(if(useLandscapeLayout) 64.dp else 80.dp),
+            modifier = Modifier
+                .size(if(useLandscapeLayout) 64.dp else 80.dp)
+                .testTag("full_player_playpause"),
             shape = CircleShape,
             colors = IconButtonDefaults.filledIconButtonColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
