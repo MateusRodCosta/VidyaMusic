@@ -26,7 +26,7 @@ android {
     }
 
     // Main portion of the version code, usually implies a versionName change
-    val baseVersionCode = 22
+    val baseVersionCode = 23
     // Minor portion code of the version code, usually reserved for emergencies
     // Should only use values from 0 up to 9
     val minorVersionCode = 0
@@ -34,7 +34,7 @@ android {
     // and Z is reserved for ABIs (which is unused, so it's always zero)
     val versionCodeVar = baseVersionCode * 100 + minorVersionCode * 10
 
-    val baseVersionName = "3.0.1"
+    val baseVersionName = "3.0.2"
     val versionNameVar = "$baseVersionName-R"
 
     defaultConfig {
