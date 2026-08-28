@@ -45,12 +45,17 @@ class BaselineProfileGenerator {
     @Test
     fun generate() {
         // The application id for the running build variant is read from the instrumentation arguments.
-        rule.collect(
-            packageName = InstrumentationRegistry.getArguments().getString("targetAppId")
-                ?: throw Exception("targetAppId not passed as instrumentation runner arg"),
+        val packageName = InstrumentationRegistry.getArguments().getString("targetAppId")
+            ?: throw Exception("targetAppId not passed as instrumentation runner arg")
 
+        // 1. Startup Profile Collection
+        // Captures only the code needed for the app to reach its first frame.
+        // This code will be moved to the primary classes.dex.
+        rule.collect(
+            packageName = packageName,
             // See: https://d.android.com/topic/performance/baselineprofiles/dex-layout-optimizations
-            includeInStartupProfile = true
+            includeInStartupProfile = true,
+            maxIterations = 1
         ) {
             // Allow notification permission via ADB
             device.executeShellCommand("pm grant $packageName android.permission.POST_NOTIFICATIONS")
@@ -62,8 +67,32 @@ class BaselineProfileGenerator {
             pressHome()
             startActivityAndWait()
 
+            // Wait until the content is asynchronously loaded
+            waitForAsyncContent()
+
+            // Check UiAutomator documentation for more information how to interact with the app.
+            // https://d.android.com/training/testing/other-components/ui-automator
+        }
+
+        // 2. Critical User Journeys (CUJs) Collection
+        // Captures code used during common interactions to prevent runtime jank.
+        // This code will be AOT compiled but kept in secondary DEX files.
+        rule.collect(
+            packageName = packageName,
+            includeInStartupProfile = false,
+            maxIterations = 8
+        ) {
+            // Allow notification permission via ADB
+            device.executeShellCommand("pm grant $packageName android.permission.POST_NOTIFICATIONS")
+
+            // Start default activity for your app
+            pressHome()
+            startActivityAndWait()
+
             // 1. Wait until the content is asynchronously loaded
             waitForAsyncContent()
+
+            // Perform user journeys
             // 2. Scroll the roster content
             scrollRosterJourney()
             // 3. Play random track
