@@ -17,6 +17,7 @@ android {
     }
 
     defaultConfig {
+        minSdk = 28
     }
 
     targetProjectPath = ":app"
